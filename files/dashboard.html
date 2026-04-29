@@ -7,13 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #0F6E56; --green-mid: #9FE1CB;
-    --cream: #FAF9F6; --ink: #1A1A18; --ink-light: #6B6B66; --ink-faint: #D4D3CE; --white: #FFFFFF;
-    --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
-  }
+  :root { --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #0F6E56; --green-mid: #9FE1CB; --cream: #FAF9F6; --ink: #1A1A18; --ink-light: #6B6B66; --ink-faint: #D4D3CE; --white: #FFFFFF; --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif; }
   body { font-family: var(--sans); background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-
   nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,249,246,0.95); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--ink-faint); position: sticky; top: 0; z-index: 100; }
   .nav-logo { font-family: var(--serif); font-size: 20px; font-weight: 400; text-decoration: none; color: var(--ink); }
   .nav-logo span { color: var(--green); }
@@ -21,39 +16,30 @@
   .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
   .nav-cta { font-size: 13px; font-weight: 500; padding: 9px 20px; background: var(--ink); color: var(--white); border: none; border-radius: 6px; cursor: pointer; text-decoration: none; }
   .nav-cta:hover { background: var(--green-dark); }
-
   .dashboard-nav { display: flex; gap: 4px; padding: 1rem 3rem; border-bottom: 0.5px solid var(--ink-faint); background: var(--white); }
   .dash-tab { font-size: 13px; padding: 6px 16px; border-radius: 6px; color: var(--ink-light); cursor: pointer; border: none; background: transparent; font-family: var(--sans); }
   .dash-tab.active { background: var(--cream); color: var(--ink); font-weight: 500; }
-
   .main { padding: 1.5rem 3rem; display: grid; gap: 14px; max-width: 1200px; margin: 0 auto; }
-
   .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
   .metric { background: var(--white); border: 0.5px solid var(--ink-faint); border-radius: 10px; padding: 1rem 1.25rem; }
   .metric-label { font-size: 12px; color: var(--ink-light); margin-bottom: 6px; }
   .metric-value { font-size: 26px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 4px; }
   .metric-delta { font-size: 12px; color: var(--green); }
-  .metric-delta.neg { color: #D85A30; }
-
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-
   .card { background: var(--white); border: 0.5px solid var(--ink-faint); border-radius: 12px; padding: 1.25rem 1.5rem; }
   .card-title { font-size: 13px; font-weight: 500; color: var(--ink); margin: 0 0 14px; }
-
   .ai-rec { border-radius: 8px; padding: 0.9rem 1rem; margin-bottom: 10px; border-left: 3px solid var(--green); background: var(--green-light); }
   .ai-rec-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
   .ai-tag { font-size: 11px; font-weight: 500; color: var(--green-dark); background: var(--green-mid); padding: 2px 8px; border-radius: 99px; }
   .ai-time { font-size: 11px; color: var(--green-dark); }
   .ai-rec-text { font-size: 13px; color: #085041; line-height: 1.5; margin: 0; }
   .ai-rec-meta { font-size: 11px; color: var(--green-dark); margin: 6px 0 0; }
-
   .ai-rec.blue { background: #E6F1FB; border-left-color: #378ADD; }
   .ai-rec.blue .ai-tag { background: #B5D4F4; color: #0C447C; }
   .ai-rec.blue .ai-time { color: #185FA5; }
   .ai-rec.blue .ai-rec-text { color: #042C53; }
   .ai-rec.blue .ai-rec-meta { color: #185FA5; }
-
   .post-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--ink-faint); }
   .post-row:last-child { border-bottom: none; padding-bottom: 0; }
   .post-day { font-size: 12px; font-weight: 500; color: var(--ink-light); width: 30px; }
@@ -64,146 +50,69 @@
   .ig { background: #FBEAF0; color: #993556; }
   .li { background: #E6F1FB; color: #185FA5; }
   .score { font-size: 13px; font-weight: 500; color: var(--green); }
-
   .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .bar-label { font-size: 12px; color: var(--ink-light); width: 64px; }
   .bar-track { flex: 1; height: 6px; background: var(--cream); border-radius: 99px; overflow: hidden; }
   .bar-fill { height: 100%; border-radius: 99px; background: var(--green); }
   .bar-val { font-size: 12px; color: var(--ink-light); width: 36px; text-align: right; }
-
   .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
   .aud-item { background: var(--cream); border-radius: 8px; padding: 8px 10px; }
   .aud-label { font-size: 11px; color: var(--ink-light); margin: 0 0 2px; }
   .aud-val { font-size: 14px; font-weight: 500; color: var(--ink); margin: 0; }
-
   .insight-row { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--ink-faint); }
   .insight-row:last-child { border-bottom: none; }
   .insight-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
   .insight-text { font-size: 13px; color: var(--ink); margin: 0; line-height: 1.5; }
   .insight-sub { font-size: 11px; color: var(--ink-light); margin: 3px 0 0; }
-
   .btn-row { display: flex; gap: 8px; margin-top: 14px; }
   .btn-green { background: var(--green); color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: var(--sans); }
   .btn-green:hover { background: var(--green-dark); }
   .btn-outline { background: transparent; color: var(--ink-light); border: 0.5px solid var(--ink-faint); border-radius: 6px; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: var(--sans); }
   .btn-full { width: 100%; }
-
   .perf-num { font-family: var(--serif); font-size: 36px; font-weight: 300; color: var(--ink); line-height: 1; }
   .perf-label { font-size: 12px; color: var(--ink-light); margin: 4px 0 0; }
   .perf-delta { font-size: 12px; color: var(--green); margin: 2px 0 0; }
-
   footer { padding: 1.5rem 3rem; border-top: 0.5px solid var(--ink-faint); display: flex; align-items: center; justify-content: space-between; margin-top: 2rem; }
   .footer-logo { font-family: var(--serif); font-size: 15px; color: var(--ink); }
   .footer-logo span { color: var(--green); }
   .footer-copy { font-size: 12px; color: var(--ink-light); }
-
-  @media (max-width: 900px) {
-    nav, .dashboard-nav, .main, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
-    .metrics, .two-col, .three-col { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-  }
+  @media (max-width: 900px) { nav, .dashboard-nav, .main, footer { padding-left: 1.25rem; padding-right: 1.25rem; } .metrics, .two-col, .three-col { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo">Hospitality<span>AI</span></a>
-  <div class="nav-hotel">
-    <div class="nav-dot"></div>
-    Le Beaumont Geneva
-  </div>
+  <div class="nav-hotel"><div class="nav-dot"></div>Le Beaumont Geneva</div>
   <a href="index.html#contact" class="nav-cta">Demander une démo</a>
 </nav>
-
 <div class="dashboard-nav">
   <button class="dash-tab active">Dashboard</button>
   <button class="dash-tab">Calendrier</button>
   <button class="dash-tab">Analytics</button>
   <button class="dash-tab">Contenu</button>
 </div>
-
 <div class="main">
-
-  <!-- metrics -->
   <div class="metrics">
-    <div class="metric">
-      <div class="metric-label">Portée cette semaine</div>
-      <div class="metric-value">24,8k</div>
-      <div class="metric-delta">+12% vs sem. dernière</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Taux d'engagement</div>
-      <div class="metric-value">4,7%</div>
-      <div class="metric-delta">+0,8pt</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Posts planifiés</div>
-      <div class="metric-value">6</div>
-      <div class="metric-delta" style="color:var(--ink-light);">Cette semaine</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Score IA contenu</div>
-      <div class="metric-value">87/100</div>
-      <div class="metric-delta">Excellent</div>
-    </div>
+    <div class="metric"><div class="metric-label">Portée cette semaine</div><div class="metric-value">24,8k</div><div class="metric-delta">+12% vs sem. dernière</div></div>
+    <div class="metric"><div class="metric-label">Taux d'engagement</div><div class="metric-value">4,7%</div><div class="metric-delta">+0,8pt</div></div>
+    <div class="metric"><div class="metric-label">Posts planifiés</div><div class="metric-value">6</div><div class="metric-delta" style="color:var(--ink-light);">Cette semaine</div></div>
+    <div class="metric"><div class="metric-label">Score IA contenu</div><div class="metric-value">87/100</div><div class="metric-delta">Excellent</div></div>
   </div>
-
-  <!-- row 2 -->
   <div class="two-col">
     <div class="card">
       <p class="card-title">Recommandations IA</p>
-      <div class="ai-rec">
-        <div class="ai-rec-header">
-          <span class="ai-tag">Optimal</span>
-          <span class="ai-time">Demain, 18h30</span>
-        </div>
-        <p class="ai-rec-text">Postez une photo de votre terrasse au coucher du soleil — taux d'engagement +38% sur ce créneau pour votre audience cible.</p>
-        <p class="ai-rec-meta">Audience: voyageurs d'affaires 35-50 ans · Instagram + LinkedIn</p>
-      </div>
-      <div class="ai-rec blue">
-        <div class="ai-rec-header">
-          <span class="ai-tag">Alerte</span>
-          <span class="ai-time">Taux d'occupation creux: 14-17 mars</span>
-        </div>
-        <p class="ai-rec-text">Lancez une campagne "weekend escape" dès maintenant. Historiquement, 12j avant = meilleur taux de conversion.</p>
-        <p class="ai-rec-meta">+23% de réservations attendues sur périodes similaires</p>
-      </div>
-      <div class="btn-row">
-        <button class="btn-green">Générer le contenu</button>
-        <button class="btn-outline">Planifier</button>
-      </div>
+      <div class="ai-rec"><div class="ai-rec-header"><span class="ai-tag">Optimal</span><span class="ai-time">Demain, 18h30</span></div><p class="ai-rec-text">Postez une photo de votre terrasse au coucher du soleil — taux d'engagement +38% sur ce créneau pour votre audience cible.</p><p class="ai-rec-meta">Audience: voyageurs d'affaires 35-50 ans · Instagram + LinkedIn</p></div>
+      <div class="ai-rec blue"><div class="ai-rec-header"><span class="ai-tag">Alerte</span><span class="ai-time">Taux d'occupation creux: 14-17 mars</span></div><p class="ai-rec-text">Lancez une campagne "weekend escape" dès maintenant. Historiquement, 12j avant = meilleur taux de conversion.</p><p class="ai-rec-meta">+23% de réservations attendues sur périodes similaires</p></div>
+      <div class="btn-row"><button class="btn-green">Générer le contenu</button><button class="btn-outline">Planifier</button></div>
     </div>
-
     <div class="card">
       <p class="card-title">Calendrier cette semaine</p>
-      <div class="post-row">
-        <span class="post-day">LUN</span>
-        <div class="post-info"><p class="post-title">Petit-déjeuner vue lac</p><p class="post-time">08h00 · Publié</p></div>
-        <span class="badge ig">Instagram</span>
-        <span class="score">92</span>
-      </div>
-      <div class="post-row">
-        <span class="post-day">MER</span>
-        <div class="post-info"><p class="post-title">Offre corporate Q1</p><p class="post-time">12h00 · Planifié</p></div>
-        <span class="badge li">LinkedIn</span>
-        <span class="score">85</span>
-      </div>
-      <div class="post-row">
-        <span class="post-day">JEU</span>
-        <div class="post-info"><p class="post-title">Terrasse sunset</p><p class="post-time">18h30 · Recommandé IA</p></div>
-        <span class="badge ig">Instagram</span>
-        <span class="score">94</span>
-      </div>
-      <div class="post-row">
-        <span class="post-day">SAM</span>
-        <div class="post-info"><p class="post-title">Weekend escape promo</p><p class="post-time">10h00 · À créer</p></div>
-        <span class="badge ig">Instagram</span>
-        <span class="score" style="color:var(--ink-light);">—</span>
-      </div>
+      <div class="post-row"><span class="post-day">LUN</span><div class="post-info"><p class="post-title">Petit-déjeuner vue lac</p><p class="post-time">08h00 · Publié</p></div><span class="badge ig">Instagram</span><span class="score">92</span></div>
+      <div class="post-row"><span class="post-day">MER</span><div class="post-info"><p class="post-title">Offre corporate Q1</p><p class="post-time">12h00 · Planifié</p></div><span class="badge li">LinkedIn</span><span class="score">85</span></div>
+      <div class="post-row"><span class="post-day">JEU</span><div class="post-info"><p class="post-title">Terrasse sunset</p><p class="post-time">18h30 · Recommandé IA</p></div><span class="badge ig">Instagram</span><span class="score">94</span></div>
+      <div class="post-row"><span class="post-day">SAM</span><div class="post-info"><p class="post-title">Weekend escape promo</p><p class="post-time">10h00 · À créer</p></div><span class="badge ig">Instagram</span><span class="score" style="color:var(--ink-light);">—</span></div>
     </div>
   </div>
-
-  <!-- row 3 -->
   <div class="three-col">
     <div class="card">
       <p class="card-title">Meilleurs créneaux</p>
@@ -218,26 +127,13 @@
         <div class="aud-item"><p class="aud-label">Format top</p><p class="aud-val">Photo réelle</p></div>
       </div>
     </div>
-
     <div class="card">
       <p class="card-title">Insights IA</p>
-      <div class="insight-row">
-        <div class="insight-icon" style="background:#E1F5EE;">↑</div>
-        <div><p class="insight-text">Les posts avec vue extérieure génèrent 2x plus d'engagement que les photos de chambre.</p><p class="insight-sub">Basé sur vos 90 derniers posts</p></div>
-      </div>
-      <div class="insight-row">
-        <div class="insight-icon" style="background:#FAEEDA;">!</div>
-        <div><p class="insight-text">Vos concurrents genevois postent 40% plus fréquemment le vendredi soir.</p><p class="insight-sub">Opportunité non exploitée</p></div>
-      </div>
-      <div class="insight-row">
-        <div class="insight-icon" style="background:#E6F1FB;">i</div>
-        <div><p class="insight-text">#GenevaLuxury performe 3x mieux que #Hotel sur votre compte.</p><p class="insight-sub">À inclure systématiquement</p></div>
-      </div>
-      <div class="btn-row" style="margin-top:12px;">
-        <button class="btn-outline btn-full">Générer plan 30 jours</button>
-      </div>
+      <div class="insight-row"><div class="insight-icon" style="background:#E1F5EE;">↑</div><div><p class="insight-text">Les posts avec vue extérieure génèrent 2x plus d'engagement que les photos de chambre.</p><p class="insight-sub">Basé sur vos 90 derniers posts</p></div></div>
+      <div class="insight-row"><div class="insight-icon" style="background:#FAEEDA;">!</div><div><p class="insight-text">Vos concurrents genevois postent 40% plus fréquemment le vendredi soir.</p><p class="insight-sub">Opportunité non exploitée</p></div></div>
+      <div class="insight-row"><div class="insight-icon" style="background:#E6F1FB;">i</div><div><p class="insight-text">#GenevaLuxury performe 3x mieux que #Hotel sur votre compte.</p><p class="insight-sub">À inclure systématiquement</p></div></div>
+      <div class="btn-row" style="margin-top:12px;"><button class="btn-outline btn-full">Générer plan 30 jours</button></div>
     </div>
-
     <div class="card">
       <p class="card-title">Performance du mois</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
@@ -248,13 +144,10 @@
       </div>
     </div>
   </div>
-
 </div>
-
 <footer>
   <div class="footer-logo">Hospitality<span>AI</span></div>
   <div class="footer-copy">© 2026 HospitalityAI · Genève, Suisse</div>
 </footer>
-
 </body>
 </html>
