@@ -7,254 +7,222 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #0F6E56; --green-mid: #9FE1CB;
-    --cream: #FAF9F6; --ink: #1A1A18; --ink-light: #6B6B66; --ink-faint: #D4D3CE; --white: #FFFFFF;
-    --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
-  }
-  body { font-family: var(--sans); background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-
-  nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,249,246,0.95); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--ink-faint); position: sticky; top: 0; z-index: 100; }
+  :root { --g: #1D9E75; --gl: #E1F5EE; --gd: #0F6E56; --gm: #9FE1CB; --cream: #FAF9F6; --ink: #1A1A18; --inkl: #6B6B66; --inkf: #D4D3CE; --w: #FFFFFF; --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif; }
+  body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,249,246,0.95); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--inkf); position: sticky; top: 0; z-index: 100; }
   .nav-logo { font-family: var(--serif); font-size: 20px; font-weight: 400; text-decoration: none; color: var(--ink); }
-  .nav-logo span { color: var(--green); }
-  .nav-hotel { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-light); padding: 5px 14px; border: 0.5px solid var(--ink-faint); border-radius: 99px; }
-  .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
-  .nav-cta { font-size: 13px; font-weight: 500; padding: 9px 20px; background: var(--ink); color: var(--white); border: none; border-radius: 6px; cursor: pointer; text-decoration: none; }
-  .nav-cta:hover { background: var(--green-dark); }
-
-  .dashboard-nav { display: flex; gap: 4px; padding: 1rem 3rem; border-bottom: 0.5px solid var(--ink-faint); background: var(--white); }
-  .dash-tab { font-size: 13px; padding: 6px 16px; border-radius: 6px; color: var(--ink-light); cursor: pointer; border: none; background: transparent; font-family: var(--sans); }
-  .dash-tab.active { background: var(--cream); color: var(--ink); font-weight: 500; }
-
-  .main { padding: 1.5rem 3rem; display: grid; gap: 14px; max-width: 1200px; margin: 0 auto; }
-
-  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .metric { background: var(--white); border: 0.5px solid var(--ink-faint); border-radius: 10px; padding: 1rem 1.25rem; }
-  .metric-label { font-size: 12px; color: var(--ink-light); margin-bottom: 6px; }
-  .metric-value { font-size: 26px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 4px; }
-  .metric-delta { font-size: 12px; color: var(--green); }
-  .metric-delta.neg { color: #D85A30; }
-
+  .nav-logo span { color: var(--g); }
+  .nav-hotel { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--inkl); padding: 5px 14px; border: 0.5px solid var(--inkf); border-radius: 99px; }
+  .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--g); }
+  .nav-cta { font-size: 13px; font-weight: 500; padding: 9px 20px; background: var(--ink); color: var(--w); border: none; border-radius: 6px; cursor: pointer; text-decoration: none; }
+  .nav-cta:hover { background: var(--gd); }
+  .dash-tabs { display: flex; gap: 2px; padding: 10px 3rem; border-bottom: 0.5px solid var(--inkf); background: var(--w); }
+  .tab { font-size: 13px; padding: 6px 16px; border-radius: 6px; color: var(--inkl); cursor: pointer; border: none; background: transparent; font-family: var(--sans); }
+  .tab.active { background: var(--cream); color: var(--ink); font-weight: 500; border: 0.5px solid var(--inkf); }
+  .alert { background: #FCEBEB; border-left: 4px solid #E24B4A; padding: 12px 3rem; display: flex; gap: 12px; align-items: flex-start; }
+  .alert-icon { width: 22px; height: 22px; border-radius: 50%; background: #E24B4A; color: white; font-size: 12px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .alert-title { font-size: 13px; font-weight: 500; color: #A32D2D; margin-bottom: 3px; }
+  .alert-text { font-size: 13px; color: #791F1F; line-height: 1.5; }
+  .alert-btn { font-size: 12px; font-weight: 500; color: #E24B4A; border: none; background: none; padding: 0; margin-top: 6px; cursor: pointer; display: block; }
+  .main { padding: 1.5rem 3rem; display: grid; gap: 14px; max-width: 1300px; margin: 0 auto; }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .metric { background: var(--w); border: 0.5px solid var(--inkf); border-radius: 10px; padding: 1rem 1.25rem; }
+  .metric-label { font-size: 12px; color: var(--inkl); margin-bottom: 6px; }
+  .metric-value { font-size: 24px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+  .metric-delta { font-size: 12px; color: var(--g); }
+  .metric-delta.warn { color: #BA7517; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-
-  .card { background: var(--white); border: 0.5px solid var(--ink-faint); border-radius: 12px; padding: 1.25rem 1.5rem; }
-  .card-title { font-size: 13px; font-weight: 500; color: var(--ink); margin: 0 0 14px; }
-
-  .ai-rec { border-radius: 8px; padding: 0.9rem 1rem; margin-bottom: 10px; border-left: 3px solid var(--green); background: var(--green-light); }
-  .ai-rec-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-  .ai-tag { font-size: 11px; font-weight: 500; color: var(--green-dark); background: var(--green-mid); padding: 2px 8px; border-radius: 99px; }
-  .ai-time { font-size: 11px; color: var(--green-dark); }
-  .ai-rec-text { font-size: 13px; color: #085041; line-height: 1.5; margin: 0; }
-  .ai-rec-meta { font-size: 11px; color: var(--green-dark); margin: 6px 0 0; }
-
-  .ai-rec.blue { background: #E6F1FB; border-left-color: #378ADD; }
-  .ai-rec.blue .ai-tag { background: #B5D4F4; color: #0C447C; }
-  .ai-rec.blue .ai-time { color: #185FA5; }
-  .ai-rec.blue .ai-rec-text { color: #042C53; }
-  .ai-rec.blue .ai-rec-meta { color: #185FA5; }
-
-  .post-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--ink-faint); }
-  .post-row:last-child { border-bottom: none; padding-bottom: 0; }
-  .post-day { font-size: 12px; font-weight: 500; color: var(--ink-light); width: 30px; }
-  .post-info { flex: 1; }
-  .post-title { font-size: 13px; color: var(--ink); margin: 0; }
-  .post-time { font-size: 11px; color: var(--ink-light); margin: 2px 0 0; }
-  .badge { font-size: 11px; padding: 2px 9px; border-radius: 99px; }
-  .ig { background: #FBEAF0; color: #993556; }
-  .li { background: #E6F1FB; color: #185FA5; }
-  .score { font-size: 13px; font-weight: 500; color: var(--green); }
-
-  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .bar-label { font-size: 12px; color: var(--ink-light); width: 64px; }
-  .bar-track { flex: 1; height: 6px; background: var(--cream); border-radius: 99px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 99px; background: var(--green); }
-  .bar-val { font-size: 12px; color: var(--ink-light); width: 36px; text-align: right; }
-
-  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
-  .aud-item { background: var(--cream); border-radius: 8px; padding: 8px 10px; }
-  .aud-label { font-size: 11px; color: var(--ink-light); margin: 0 0 2px; }
-  .aud-val { font-size: 14px; font-weight: 500; color: var(--ink); margin: 0; }
-
-  .insight-row { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--ink-faint); }
-  .insight-row:last-child { border-bottom: none; }
-  .insight-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-  .insight-text { font-size: 13px; color: var(--ink); margin: 0; line-height: 1.5; }
-  .insight-sub { font-size: 11px; color: var(--ink-light); margin: 3px 0 0; }
-
-  .btn-row { display: flex; gap: 8px; margin-top: 14px; }
-  .btn-green { background: var(--green); color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: var(--sans); }
-  .btn-green:hover { background: var(--green-dark); }
-  .btn-outline { background: transparent; color: var(--ink-light); border: 0.5px solid var(--ink-faint); border-radius: 6px; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: var(--sans); }
-  .btn-full { width: 100%; }
-
-  .perf-num { font-family: var(--serif); font-size: 36px; font-weight: 300; color: var(--ink); line-height: 1; }
-  .perf-label { font-size: 12px; color: var(--ink-light); margin: 4px 0 0; }
-  .perf-delta { font-size: 12px; color: var(--green); margin: 2px 0 0; }
-
-  footer { padding: 1.5rem 3rem; border-top: 0.5px solid var(--ink-faint); display: flex; align-items: center; justify-content: space-between; margin-top: 2rem; }
+  .right-col { display: grid; gap: 14px; }
+  .card { background: var(--w); border: 0.5px solid var(--inkf); border-radius: 12px; padding: 1.25rem 1.5rem; }
+  .card-title { font-size: 13px; font-weight: 500; color: var(--ink); margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+  .pms-badge { font-size: 10px; background: #E6F1FB; color: #185FA5; padding: 2px 7px; border-radius: 99px; font-weight: 400; }
+  .insight { border-radius: 8px; margin-bottom: 9px; overflow: hidden; border: 0.5px solid transparent; }
+  .insight:last-child { margin-bottom: 0; }
+  .insight-top { padding: 10px 12px 8px; }
+  .insight-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
+  .itag { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 99px; display: inline-block; }
+  .itoggle { font-size: 10px; border: none; background: none; cursor: pointer; color: var(--inkl); padding: 0; font-family: var(--sans); }
+  .itext { font-size: 13px; line-height: 1.5; margin: 0; }
+  .ibtn { font-size: 12px; font-weight: 500; border: none; background: none; padding: 0; margin-top: 6px; cursor: pointer; display: block; font-family: var(--sans); }
+  .tip-section { padding: 9px 12px 10px; border-top: 0.5px dashed; display: none; }
+  .tip-section.open { display: block; }
+  .tip-label { font-size: 10px; font-weight: 500; margin-bottom: 5px; display: flex; align-items: center; gap: 4px; }
+  .tip-label::before { content: '💡'; font-size: 11px; }
+  .tip-text { font-size: 12px; line-height: 1.6; }
+  .tip-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+  .tip-tag { font-size: 10px; padding: 2px 7px; border-radius: 99px; background: rgba(0,0,0,0.06); color: var(--inkl); }
+  .ins-rev { background: #FCEBEB; border-color: #F7C1C1; }
+  .ins-rev .itag { background: #F7C1C1; color: #A32D2D; }
+  .ins-rev .itext { color: #791F1F; }
+  .ins-rev .ibtn { color: #E24B4A; }
+  .ins-rev .tip-section { border-top-color: #F7C1C1; background: #FEF4F4; }
+  .ins-rev .tip-label { color: #A32D2D; }
+  .ins-rev .tip-text { color: #791F1F; }
+  .ins-opp { background: var(--gl); border-color: var(--gm); }
+  .ins-opp .itag { background: var(--gm); color: #085041; }
+  .ins-opp .itext { color: #085041; }
+  .ins-opp .ibtn { color: var(--g); }
+  .ins-opp .tip-section { border-top-color: var(--gm); background: #D5F0E6; }
+  .ins-opp .tip-label { color: #085041; }
+  .ins-opp .tip-text { color: #085041; }
+  .ins-comp { background: #FAEEDA; border-color: #FAC775; }
+  .ins-comp .itag { background: #FAC775; color: #633806; }
+  .ins-comp .itext { color: #633806; }
+  .ins-comp .ibtn { color: #BA7517; }
+  .ins-comp .tip-section { border-top-color: #FAC775; background: #FDF0D5; }
+  .ins-comp .tip-label { color: #633806; }
+  .ins-comp .tip-text { color: #633806; }
+  .ins-evt { background: #E6F1FB; border-color: #B5D4F4; }
+  .ins-evt .itag { background: #B5D4F4; color: #0C447C; }
+  .ins-evt .itext { color: #0C447C; }
+  .ins-evt .ibtn { color: #378ADD; }
+  .ins-evt .tip-section { border-top-color: #B5D4F4; background: #D6E8F8; }
+  .ins-evt .tip-label { color: #0C447C; }
+  .ins-evt .tip-text { color: #0C447C; }
+  .occ-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .occ-row:last-child { margin-bottom: 0; }
+  .occ-label { font-size: 12px; color: var(--inkl); width: 36px; }
+  .occ-track { flex: 1; height: 8px; background: var(--cream); border-radius: 99px; overflow: hidden; }
+  .occ-fill { height: 100%; border-radius: 99px; }
+  .occ-val { font-size: 12px; font-weight: 500; width: 36px; text-align: right; }
+  .roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .roi-item { background: var(--cream); border-radius: 8px; padding: 9px 11px; }
+  .roi-label { font-size: 11px; color: var(--inkl); margin-bottom: 3px; }
+  .roi-val { font-size: 17px; font-weight: 500; color: var(--ink); }
+  .roi-sub { font-size: 11px; color: var(--g); margin-top: 2px; }
+  .comp-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid var(--inkf); }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-name { font-size: 13px; color: var(--ink); flex: 1; }
+  .comp-name.you { color: var(--g); font-weight: 500; }
+  .comp-posts { font-size: 12px; color: var(--inkl); }
+  .comp-trend { font-size: 12px; font-weight: 500; }
+  .trend-up { color: #E24B4A; }
+  .trend-down { color: var(--g); }
+  footer { padding: 1.5rem 3rem; border-top: 0.5px solid var(--inkf); display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; }
   .footer-logo { font-family: var(--serif); font-size: 15px; color: var(--ink); }
-  .footer-logo span { color: var(--green); }
-  .footer-copy { font-size: 12px; color: var(--ink-light); }
-
-  @media (max-width: 900px) {
-    nav, .dashboard-nav, .main, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
-    .metrics, .two-col, .three-col { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-  }
+  .footer-logo span { color: var(--g); }
+  .footer-copy { font-size: 12px; color: var(--inkl); }
+  @media (max-width: 900px) { nav, .dash-tabs, .alert, .main, footer { padding-left: 1.25rem; padding-right: 1.25rem; } .metrics, .two-col, .roi-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo">Hospitality<span>AI</span></a>
-  <div class="nav-hotel">
-    <div class="nav-dot"></div>
-    Le Beaumont Geneva
-  </div>
+  <div class="nav-hotel"><div class="nav-dot"></div>Le Beaumont Geneva</div>
   <a href="index.html#contact" class="nav-cta">Demander une démo</a>
 </nav>
-
-<div class="dashboard-nav">
-  <button class="dash-tab active">Dashboard</button>
-  <button class="dash-tab">Calendrier</button>
-  <button class="dash-tab">Analytics</button>
-  <button class="dash-tab">Contenu</button>
+<div class="dash-tabs">
+  <button class="tab active">Dashboard</button>
+  <button class="tab">Calendrier</button>
+  <button class="tab">Analytics</button>
+  <button class="tab">PMS Connect</button>
 </div>
-
-<div class="main">
-
-  <!-- metrics -->
-  <div class="metrics">
-    <div class="metric">
-      <div class="metric-label">Portée cette semaine</div>
-      <div class="metric-value">24,8k</div>
-      <div class="metric-delta">+12% vs sem. dernière</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Taux d'engagement</div>
-      <div class="metric-value">4,7%</div>
-      <div class="metric-delta">+0,8pt</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Posts planifiés</div>
-      <div class="metric-value">6</div>
-      <div class="metric-delta" style="color:var(--ink-light);">Cette semaine</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Score IA contenu</div>
-      <div class="metric-value">87/100</div>
-      <div class="metric-delta">Excellent</div>
-    </div>
+<div class="alert">
+  <div class="alert-icon">!</div>
+  <div>
+    <div class="alert-title">Alerte revenue — 16 jours pour agir</div>
+    <div class="alert-text">Votre PMS détecte 58% d'occupation prévue du 14 au 17 mars. Sur des périodes similaires, une campagne lancée 2 semaines avant remonte de +11pts. Perte estimée si inaction : 1 260 CHF.</div>
+    <button class="alert-btn">Générer la campagne maintenant →</button>
   </div>
-
-  <!-- row 2 -->
+</div>
+<div class="main">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">Occupation actuelle</div><div class="metric-value">79%</div><div class="metric-delta">+4pts vs mois dernier</div></div>
+    <div class="metric"><div class="metric-label">Revenue social estimé</div><div class="metric-value">9 200 CHF</div><div class="metric-delta">Ce mois · ROI ~8x</div></div>
+    <div class="metric"><div class="metric-label">Nuits à risque (30j)</div><div class="metric-value">4</div><div class="metric-delta warn">Action recommandée</div></div>
+    <div class="metric"><div class="metric-label">Score contenu IA</div><div class="metric-value">84/100</div><div class="metric-delta">3 axes à améliorer</div></div>
+  </div>
   <div class="two-col">
     <div class="card">
-      <p class="card-title">Recommandations IA</p>
-      <div class="ai-rec">
-        <div class="ai-rec-header">
-          <span class="ai-tag">Optimal</span>
-          <span class="ai-time">Demain, 18h30</span>
+      <div class="card-title">Insights PMS × social <span class="pms-badge">PMS connecté</span></div>
+      <div class="insight ins-rev">
+        <div class="insight-top">
+          <div class="insight-header"><span class="itag">Revenue à risque</span><button class="itoggle" onclick="toggleTip(this)">Voir le tip marketing ▾</button></div>
+          <p class="itext">Occupation 58% prévue 14-17 mars — 4 nuits × 315 CHF = 1 260 CHF à récupérer. Agissez dans les 48h.</p>
+          <button class="ibtn">Lancer la campagne →</button>
         </div>
-        <p class="ai-rec-text">Postez une photo de votre terrasse au coucher du soleil — taux d'engagement +38% sur ce créneau pour votre audience cible.</p>
-        <p class="ai-rec-meta">Audience: voyageurs d'affaires 35-50 ans · Instagram + LinkedIn</p>
-      </div>
-      <div class="ai-rec blue">
-        <div class="ai-rec-header">
-          <span class="ai-tag">Alerte</span>
-          <span class="ai-time">Taux d'occupation creux: 14-17 mars</span>
+        <div class="tip-section">
+          <div class="tip-label">Tip marketing IA</div>
+          <p class="tip-text">Utilisez l'urgence dans le caption : "Plus que 3 chambres disponibles ce weekend." Photo lumineuse de chambre vue lac. Ciblez les 28-45 ans dans un rayon de 150km. Lancez vendredi soir 19h — pic de planification weekend détecté sur votre audience.</p>
+          <div class="tip-tags"><span class="tip-tag">Caption urgence</span><span class="tip-tag">Photo chambre</span><span class="tip-tag">Vendredi 19h</span><span class="tip-tag">Rayon 150km</span></div>
         </div>
-        <p class="ai-rec-text">Lancez une campagne "weekend escape" dès maintenant. Historiquement, 12j avant = meilleur taux de conversion.</p>
-        <p class="ai-rec-meta">+23% de réservations attendues sur périodes similaires</p>
       </div>
-      <div class="btn-row">
-        <button class="btn-green">Générer le contenu</button>
-        <button class="btn-outline">Planifier</button>
+      <div class="insight ins-opp">
+        <div class="insight-top">
+          <div class="insight-header"><span class="itag">Opportunité détectée</span><button class="itoggle" onclick="toggleTip(this)">Voir le tip marketing ▾</button></div>
+          <p class="itext">Salon de l'Auto Genève dans 12 jours. Vos posts corporate génèrent +34% d'engagement cette semaine-là historiquement.</p>
+          <button class="ibtn">Créer le contenu →</button>
+        </div>
+        <div class="tip-section">
+          <div class="tip-label">Tip marketing IA</div>
+          <p class="tip-text">Photo sobre chambre + bureau ou salle de réunion. Caption bilingue FR/EN. Mettez en avant le parking et le check-in express. Hashtags : #GenevaMotorShow #BusinessTravel #LuxuryHotel. Publiez mardi matin 8h — votre clientèle corporate est active.</p>
+          <div class="tip-tags"><span class="tip-tag">Bilingue FR/EN</span><span class="tip-tag">Mardi 8h</span><span class="tip-tag">#GenevaMotorShow</span><span class="tip-tag">Corporate</span></div>
+        </div>
+      </div>
+      <div class="insight ins-comp">
+        <div class="insight-top">
+          <div class="insight-header"><span class="itag">Veille concurrence</span><button class="itoggle" onclick="toggleTip(this)">Voir le tip marketing ▾</button></div>
+          <p class="itext">Le Mandarin Geneva a publié 5 posts cette semaine vs 2 pour vous. Votre audience commune a chuté de 18%.</p>
+          <button class="ibtn">Voir la réponse →</button>
+        </div>
+        <div class="tip-section">
+          <div class="tip-label">Tip marketing IA</div>
+          <p class="tip-text">Ne répondez pas avec une contre-promo — différenciez-vous sur l'authenticité. Une photo de votre équipe ou d'un détail unique de l'hôtel génère 2x plus de confiance qu'une offre commerciale. Augmentez à 4 posts cette semaine pour regagner la visibilité perdue.</p>
+          <div class="tip-tags"><span class="tip-tag">Authenticité</span><span class="tip-tag">4 posts/sem</span><span class="tip-tag">Équipe ou détail</span></div>
+        </div>
+      </div>
+      <div class="insight ins-evt">
+        <div class="insight-top">
+          <div class="insight-header"><span class="itag">Météo × timing</span><button class="itoggle" onclick="toggleTip(this)">Voir le tip marketing ▾</button></div>
+          <p class="itext">16°C ensoleillé ce weekend. Profils similaires : +41% d'engagement sur posts terrasse en conditions identiques.</p>
+          <button class="ibtn">Publier maintenant →</button>
+        </div>
+        <div class="tip-section">
+          <div class="tip-label">Tip marketing IA</div>
+          <p class="tip-text">Photo prise entre 16h et 17h pour la lumière dorée. Pas de filtre — lumière naturelle performe 3x mieux sur votre compte. Caption court et émotionnel, max 2 lignes. Publiez avant 17h30. Stories en parallèle avec sondage "Terrasse ou chambre ?"</p>
+          <div class="tip-tags"><span class="tip-tag">Lumière dorée</span><span class="tip-tag">Sans filtre</span><span class="tip-tag">Avant 17h30</span><span class="tip-tag">Stories</span></div>
+        </div>
       </div>
     </div>
-
-    <div class="card">
-      <p class="card-title">Calendrier cette semaine</p>
-      <div class="post-row">
-        <span class="post-day">LUN</span>
-        <div class="post-info"><p class="post-title">Petit-déjeuner vue lac</p><p class="post-time">08h00 · Publié</p></div>
-        <span class="badge ig">Instagram</span>
-        <span class="score">92</span>
+    <div class="right-col">
+      <div class="card">
+        <div class="card-title">Occupation prévue 4 semaines <span class="pms-badge">Temps réel</span></div>
+        <div class="occ-row"><span class="occ-label">Sem 1</span><div class="occ-track"><div class="occ-fill" style="width:79%;background:#1D9E75;"></div></div><span class="occ-val" style="color:#1D9E75;">79%</span></div>
+        <div class="occ-row"><span class="occ-label">Sem 2</span><div class="occ-track"><div class="occ-fill" style="width:71%;background:#1D9E75;"></div></div><span class="occ-val" style="color:#1D9E75;">71%</span></div>
+        <div class="occ-row"><span class="occ-label">Sem 3</span><div class="occ-track"><div class="occ-fill" style="width:58%;background:#E24B4A;"></div></div><span class="occ-val" style="color:#E24B4A;">58%</span></div>
+        <div class="occ-row"><span class="occ-label">Sem 4</span><div class="occ-track"><div class="occ-fill" style="width:65%;background:#BA7517;"></div></div><span class="occ-val" style="color:#BA7517;">65%</span></div>
       </div>
-      <div class="post-row">
-        <span class="post-day">MER</span>
-        <div class="post-info"><p class="post-title">Offre corporate Q1</p><p class="post-time">12h00 · Planifié</p></div>
-        <span class="badge li">LinkedIn</span>
-        <span class="score">85</span>
+      <div class="card">
+        <div class="card-title">ROI social media estimé</div>
+        <div class="roi-grid">
+          <div class="roi-item"><div class="roi-label">Coût par nuit vendue</div><div class="roi-val">~22 CHF</div><div class="roi-sub">via social media</div></div>
+          <div class="roi-item"><div class="roi-label">Réservations directes</div><div class="roi-val">29</div><div class="roi-sub">ce mois · +17%</div></div>
+          <div class="roi-item"><div class="roi-label">Revenue estimé</div><div class="roi-val">9 200 CHF</div><div class="roi-sub">ROI ~8x</div></div>
+          <div class="roi-item"><div class="roi-label">Meilleur post</div><div class="roi-val">3 nuits</div><div class="roi-sub">vendues en 48h</div></div>
+        </div>
       </div>
-      <div class="post-row">
-        <span class="post-day">JEU</span>
-        <div class="post-info"><p class="post-title">Terrasse sunset</p><p class="post-time">18h30 · Recommandé IA</p></div>
-        <span class="badge ig">Instagram</span>
-        <span class="score">94</span>
-      </div>
-      <div class="post-row">
-        <span class="post-day">SAM</span>
-        <div class="post-info"><p class="post-title">Weekend escape promo</p><p class="post-time">10h00 · À créer</p></div>
-        <span class="badge ig">Instagram</span>
-        <span class="score" style="color:var(--ink-light);">—</span>
+      <div class="card">
+        <div class="card-title">Concurrents Geneva cette semaine</div>
+        <div class="comp-row"><span class="comp-name">Mandarin Oriental</span><span class="comp-posts">5 posts</span><span class="comp-trend trend-up">+18% reach</span></div>
+        <div class="comp-row"><span class="comp-name">Four Seasons</span><span class="comp-posts">3 posts</span><span class="comp-trend trend-down">-5% reach</span></div>
+        <div class="comp-row"><span class="comp-name">Beau-Rivage</span><span class="comp-posts">2 posts</span><span class="comp-trend trend-down">-9% reach</span></div>
+        <div class="comp-row"><span class="comp-name you">Le Beaumont (vous)</span><span class="comp-posts">2 posts</span><span class="comp-trend trend-down">-3% reach</span></div>
       </div>
     </div>
   </div>
-
-  <!-- row 3 -->
-  <div class="three-col">
-    <div class="card">
-      <p class="card-title">Meilleurs créneaux</p>
-      <div class="bar-row"><span class="bar-label">18h–20h</span><div class="bar-track"><div class="bar-fill" style="width:92%;"></div></div><span class="bar-val">4,9%</span></div>
-      <div class="bar-row"><span class="bar-label">07h–09h</span><div class="bar-track"><div class="bar-fill" style="width:75%;"></div></div><span class="bar-val">4,0%</span></div>
-      <div class="bar-row"><span class="bar-label">12h–13h</span><div class="bar-track"><div class="bar-fill" style="width:60%;"></div></div><span class="bar-val">3,2%</span></div>
-      <div class="bar-row"><span class="bar-label">21h–23h</span><div class="bar-track"><div class="bar-fill" style="width:38%;"></div></div><span class="bar-val">2,0%</span></div>
-      <div class="audience-grid">
-        <div class="aud-item"><p class="aud-label">Profil top</p><p class="aud-val">Business 35-50</p></div>
-        <div class="aud-item"><p class="aud-label">Pays #1</p><p class="aud-val">France & CH</p></div>
-        <div class="aud-item"><p class="aud-label">Meilleur jour</p><p class="aud-val">Jeudi</p></div>
-        <div class="aud-item"><p class="aud-label">Format top</p><p class="aud-val">Photo réelle</p></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <p class="card-title">Insights IA</p>
-      <div class="insight-row">
-        <div class="insight-icon" style="background:#E1F5EE;">↑</div>
-        <div><p class="insight-text">Les posts avec vue extérieure génèrent 2x plus d'engagement que les photos de chambre.</p><p class="insight-sub">Basé sur vos 90 derniers posts</p></div>
-      </div>
-      <div class="insight-row">
-        <div class="insight-icon" style="background:#FAEEDA;">!</div>
-        <div><p class="insight-text">Vos concurrents genevois postent 40% plus fréquemment le vendredi soir.</p><p class="insight-sub">Opportunité non exploitée</p></div>
-      </div>
-      <div class="insight-row">
-        <div class="insight-icon" style="background:#E6F1FB;">i</div>
-        <div><p class="insight-text">#GenevaLuxury performe 3x mieux que #Hotel sur votre compte.</p><p class="insight-sub">À inclure systématiquement</p></div>
-      </div>
-      <div class="btn-row" style="margin-top:12px;">
-        <button class="btn-outline btn-full">Générer plan 30 jours</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <p class="card-title">Performance du mois</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        <div><div class="perf-num">127k</div><div class="perf-label">Impressions totales</div><div class="perf-delta">+18%</div></div>
-        <div><div class="perf-num">5,2k</div><div class="perf-label">Interactions</div><div class="perf-delta">+24%</div></div>
-        <div><div class="perf-num">312</div><div class="perf-label">Clics site</div><div class="perf-delta">+9%</div></div>
-        <div><div class="perf-num">4,1%</div><div class="perf-label">Engagement moy.</div><div class="perf-delta">+0,6pt</div></div>
-      </div>
-    </div>
-  </div>
-
 </div>
-
 <footer>
   <div class="footer-logo">Hospitality<span>AI</span></div>
   <div class="footer-copy">© 2026 HospitalityAI · Genève, Suisse</div>
 </footer>
-
+<script>
+function toggleTip(btn) {
+  const insight = btn.closest('.insight');
+  const tip = insight.querySelector('.tip-section');
+  const isOpen = tip.classList.contains('open');
+  tip.classList.toggle('open');
+  btn.textContent = isOpen ? 'Voir le tip marketing ▾' : 'Masquer le tip ▴';
+}
+</script>
 </body>
 </html>
